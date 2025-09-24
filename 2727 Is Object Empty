@@ -1,0 +1,12 @@
+/**
+ * @param {Object | Array} obj
+ * @return {boolean}
+ */
+function isEmpty(obj) {
+  for (const _ in obj) {
+    
+    return false;
+  }
+ 
+  return true;
+}
