@@ -1,0 +1,39 @@
+/**
+ * @param {Object|Array} obj
+ * @return {Object|Array}
+ */
+var compactObject = function(obj) {
+    function dfs(val) {
+      
+        if (!val) {
+            return undefined;
+        }
+       
+        if (typeof val !== "object") {
+            return val;
+        }
+        
+        if (Array.isArray(val)) {
+            const newArr = [];
+            for (const item of val) {
+                const processed = dfs(item);
+                if (processed !== undefined) {
+                    newArr.push(processed);
+                }
+            }
+            return newArr;
+        }
+       
+        const newObj = {};
+        for (const key in val) {
+            if (Object.prototype.hasOwnProperty.call(val, key)) {
+                const processed = dfs(val[key]);
+                if (processed !== undefined) {
+                    newObj[key] = processed;
+                }
+            }
+        }
+        return newObj;
+    }
+    return dfs(obj);
+};
