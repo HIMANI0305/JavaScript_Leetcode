@@ -1,0 +1,21 @@
+/**
+ * @param {any[]} arr
+ * @param {number} n
+ * @return {any[]}
+ */
+var flat = function(arr, n) {
+    const res = [];
+
+    function dfs(sub, depth) {
+        for (const el of sub) {
+            if (Array.isArray(el) && depth > 0) {
+                dfs(el, depth - 1);
+            } else {
+                res.push(el);
+            }
+        }
+    }
+
+    dfs(arr, n);
+    return res;
+};
